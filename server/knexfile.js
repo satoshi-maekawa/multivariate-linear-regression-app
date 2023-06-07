@@ -1,47 +1,40 @@
 // Update with your config settings.
 
-/**
- * @type { Object.<string, import("knex").Knex.Config> }
- */
+
+require('dotenv').config();
+// dotenvの使い方メモ
+// .envの中身が下記の場合
+// KEY1=VALUE1
+// KEY2=VALUE2
+// KEY3=VALUE3
+// console.log(process.env.KEY1);  //=> VALUE1
+// console.log(process.env.KEY2);  //=> VALUE2
+// console.log(process.env.KEY3);  //=> VALUE3
+
 module.exports = {
-
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     connection: {
-      filename: './dev.sqlite3'
-    }
-  },
-
-  staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
+      host: '127.0.0.1',
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME
     },
     migrations: {
-      tableName: 'knex_migrations'
+      directory: './migrations'
+    },
+    seeds: {
+      directory: './seeds'
     }
   },
-
   production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
+    client: 'pg',
+    connection: process.env.DATABASE_URL,
     migrations: {
-      tableName: 'knex_migrations'
+      directory: './migrations'
+    },
+    seeds: {
+      directory: './seeds'
     }
   }
-
 };
