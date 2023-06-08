@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL;
 
 function App() {
   const [inputs, setInputs] = useState({
@@ -20,7 +21,8 @@ function App() {
   };
 
   const handlePredictButtonClick = async () => {
-    const response = await axios.get('http://localhost:5000/predict', {
+    const response = await axios.get(`${API_URL}/predict`, {
+    // const response = await axios.get('http://localhost:5000/predict', {
       params: inputs
     });
     setPrediction(response.data.y);
@@ -28,7 +30,8 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:5000/samples');
+      const response = await axios.get(`${API_URL}/samples`);
+      // const response = await axios.get('http://localhost:5000/samples');
       setSamples(response.data);
     };
 
