@@ -59,5 +59,12 @@ app.get('/predict', async (req, res) => {
   res.json({ y: yPredicted[0] });
 });
 
+app.get('/samples', async (req, res) => {
+  const samples = await db.select().table('samples');
+
+  console.log(samples);
+  res.json(samples);
+});
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));

@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
     x4: '',
   });
   const [prediction, setPrediction] = useState(null);
+  const [samples, setSamples] = useState([]);
 
   const handleInputChange = (event) => {
     setInputs({
@@ -25,14 +26,53 @@ function App() {
     setPrediction(response.data.y);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get('http://localhost:5000/samples');
+      setSamples(response.data);
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <div>
-      <input name="x1" value={inputs.x1} onChange={handleInputChange} />
-      <input name="x2" value={inputs.x2} onChange={handleInputChange} />
-      <input name="x3" value={inputs.x3} onChange={handleInputChange} />
-      <input name="x4" value={inputs.x4} onChange={handleInputChange} />
-      <button onClick={handlePredictButtonClick}>Predict</button>
-      {prediction && <p>Predicted y: {prediction}</p>}
+    <div className="App">
+      <header className="App-header">
+        <h1>Multiple Linear Regression(重回帰分析)アプリ</h1>
+        <div className="input-section">
+          <input className="input" name="x1" placeholder="x1" value={inputs.x1} onChange={handleInputChange} />
+          <input className="input" name="x2" placeholder="x2" value={inputs.x2} onChange={handleInputChange} />
+          <input className="input" name="x3" placeholder="x3" value={inputs.x3} onChange={handleInputChange} />
+          <input className="input" name="x4" placeholder="x4" value={inputs.x4} onChange={handleInputChange} />
+          <button className="predict-button" onClick={handlePredictButtonClick}>予測する</button>
+          {prediction && <p>予測したyは: {prediction}</p>}
+        </div>
+        <div className="table-section">
+          <h2>今回のサンプルデータは下記</h2>
+          <table className="samples-table">
+            <thead>
+              <tr>
+                <th>y</th>
+                <th>x1</th>
+                <th>x2</th>
+                <th>x3</th>
+                <th>x4</th>
+              </tr>
+            </thead>
+            <tbody>
+              {samples.map((sample, index) => (
+                <tr key={index}>
+                  <td>{sample.y}</td>
+                  <td>{sample.x1}</td>
+                  <td>{sample.x2}</td>
+                  <td>{sample.x3}</td>
+                  <td>{sample.x4}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </header>
     </div>
   );
 }
