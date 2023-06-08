@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "server": "node ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate-latest": "npx knex migrate:latest --knexfile ./knexfile.js",
     "seed-data": "npx knex seed:run --knexfile ./knexfile.js"
