@@ -28,7 +28,7 @@
 
 .predict-button {
   padding: 10px 20px;
-  background-color: #61dafb;
+  background-color: #98b4ef;
   color: #282c34;
   border: none;
   border-radius: 5px;
@@ -38,7 +38,7 @@
 }
 
 .predict-button:hover {
-  background-color: #39c0ed;
+  background-color: #3987ed;
 }
 
 .table-section {

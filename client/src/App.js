@@ -39,16 +39,17 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Multiple Linear Regression(重回帰分析)アプリ</h1>
+        <h2>x1, x2, x3, x4を入力すると yを予測します</h2>
         <div className="input-section">
           <input className="input" name="x1" placeholder="x1" value={inputs.x1} onChange={handleInputChange} />
           <input className="input" name="x2" placeholder="x2" value={inputs.x2} onChange={handleInputChange} />
           <input className="input" name="x3" placeholder="x3" value={inputs.x3} onChange={handleInputChange} />
           <input className="input" name="x4" placeholder="x4" value={inputs.x4} onChange={handleInputChange} />
           <button className="predict-button" onClick={handlePredictButtonClick}>予測する</button>
-          {prediction && <p>予測したyは: {prediction}</p>}
         </div>
+          {prediction && <p>予測したyは {prediction} です</p>}
         <div className="table-section">
-          <h2>今回のサンプルデータは下記</h2>
+          <h2>今回のサンプルデータ</h2>
           <table className="samples-table">
             <thead>
               <tr>
