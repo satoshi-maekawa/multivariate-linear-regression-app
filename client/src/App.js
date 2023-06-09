@@ -50,9 +50,9 @@ function App() {
           <input className="input" name="x4" placeholder="x4" value={inputs.x4} onChange={handleInputChange} />
           <button className="predict-button" onClick={handlePredictButtonClick}>予測する</button>
         </div>
-          {prediction && <p>予測したyは {prediction} です</p>}
+          {prediction && <p className="p1">予測したyは {prediction} です</p>}
         <div className="table-section">
-          <h2>今回のサンプルデータ</h2>
+          <h2>現在登録されているサンプルデータ</h2>
           <table className="samples-table">
             <thead>
               <tr>

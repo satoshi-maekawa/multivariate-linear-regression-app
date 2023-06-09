@@ -24,6 +24,7 @@
   border: none;
   border-radius: 5px;
   outline: none;
+  font-size: 20px;
 }
 
 .predict-button {
@@ -50,3 +51,8 @@
   margin: 0 auto;
   color: #61dafb;
 }
+
+.p1 {
+  font-size: 20px;
+  }
+  
