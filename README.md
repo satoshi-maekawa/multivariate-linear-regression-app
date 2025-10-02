@@ -26,13 +26,6 @@
     ├── package.json  # バックエンドの依存関係
   
 ```
-```   
-─── app 
-    ├── index.html
-    ├── script.js
-    ├── chart.umd.min.js
-```
-
 
 ## セットアップ
 
